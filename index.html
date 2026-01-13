@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes liens</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px;
+      display: block;
+    }
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 22px;
+    }
+    p {
+      margin: 0 0 20px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+    a.link {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.15);
+      transition: transform 0.2s, background 0.2s;
+    }
+    a.link:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="avatar" src="image1.png" alt="Photo de profil" />
+    <h1>ll_soulheroes_ll</h1>
+    <p>Retrouve-moi partout<br><strong>Discord :</strong> soulheroes</p>
+
+    <a class="link" href="#" onclick="copyDiscord()">Discord perso : soulheroes</a>
+
+<script>
+  function copyDiscord() {
+    navigator.clipboard.writeText("soulheroes");
+    alert("Pseudo Discord copié !");
+  }
+</script>
+
+
+    <a class="link" href="https://www.tiktok.com/@ll_soulheroes_ll" target="_blank">TikTok</a>
+    <a class="link" href="https://www.twitch.tv/soulheroes" target="_blank">Twitch</a>
+    <a class="link" href="https://discord.gg/ZYhEb2eX" target="_blank">Discord communautaire</a>
+    <a class="link" href="https://www.youtube.com/@ii_soulheroes_ii1127" target="_blank">YouTube</a>
+    <a class="link" href="https://www.instagram.com/ll_soulheroes_ll" target="_blank">Instagram</a>
+    <a class="link" href="https://www.snapchat.com/add/soulheroes" target="_blank">Snapchat</a>
+  </div>
+</body>
+</html>
