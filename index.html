@@ -3,82 +3,508 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mes liens</title>
+  <title>ll_soulheroes_ll | Gaming Links</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
+    
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      font-family: Arial, Helvetica, sans-serif;
-      color: #fff;
+      background: #0a0a0a;
+      font-family: 'Rajdhani', sans-serif;
+      overflow: hidden;
+      position: relative;
     }
+
+    /* Animated Grid Background */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      perspective: 500px;
+      transform-style: preserve-3d;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(50px); }
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #00ffff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      animation: float 10s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Scanline Effect */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Main Card */
     .card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      padding: 30px;
+      background: rgba(10, 10, 20, 0.9);
+      border: 2px solid #00ffff;
+      padding: 40px;
       border-radius: 20px;
-      width: 320px;
+      width: 380px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 5;
+      box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.3),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: cardPulse 4s ease-in-out infinite;
     }
+
+    @keyframes cardPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6), inset 0 0 30px rgba(0, 255, 255, 0.2); }
+    }
+
+    /* Corner Accents */
+    .corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #ff00ff;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+    .corner-tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+    .corner-tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+    .corner-bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+    .corner-br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+    /* Avatar */
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 15px;
-      display: block;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      position: relative;
+      z-index: 2;
     }
+
+    .avatar-ring {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 140px;
+      height: 140px;
+      border: 2px dashed #ff00ff;
+      border-radius: 50%;
+      animation: spin 10s linear infinite;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Typography */
     h1 {
-      margin: 10px 0 5px;
-      font-size: 22px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 15px 0 5px;
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      animation: textGlow 2s ease-in-out infinite alternate;
     }
-    p {
-      margin: 0 0 20px;
-      opacity: 0.8;
+
+    @keyframes textGlow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.3); }
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    .discord-tag {
+      display: inline-block;
+      background: rgba(88, 101, 242, 0.2);
+      border: 1px solid #5865F2;
+      padding: 5px 15px;
+      border-radius: 20px;
+      color: #5865F2;
+      font-weight: 700;
+      margin-bottom: 25px;
       font-size: 14px;
+      box-shadow: 0 0 10px rgba(88, 101, 242, 0.3);
     }
+
+    /* Links */
+    .links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     a.link {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       text-decoration: none;
       color: #fff;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 15px 20px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.15);
-      transition: transform 0.2s, background 0.2s;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 14px;
     }
+
+    a.link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    a.link:hover::before {
+      left: 100%;
+    }
+
     a.link:hover {
-      transform: scale(1.05);
-      background: rgba(255,255,255,0.3);
+      transform: translateX(5px) scale(1.02);
+      border-color: #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    a.link i {
+      font-size: 20px;
+      width: 30px;
+    }
+
+    /* Platform Specific Colors */
+    .link-discord { border-left: 4px solid #5865F2; }
+    .link-discord:hover { box-shadow: 0 0 20px rgba(88, 101, 242, 0.6); border-color: #5865F2; }
+    
+    .link-tiktok { border-left: 4px solid #ff0050; }
+    .link-tiktok:hover { box-shadow: 0 0 20px rgba(255, 0, 80, 0.6); border-color: #ff0050; }
+    
+    .link-twitch { border-left: 4px solid #9146ff; }
+    .link-twitch:hover { box-shadow: 0 0 20px rgba(145, 70, 255, 0.6); border-color: #9146ff; }
+    
+    .link-youtube { border-left: 4px solid #ff0000; }
+    .link-youtube:hover { box-shadow: 0 0 20px rgba(255, 0, 0, 0.6); border-color: #ff0000; }
+    
+    .link-instagram { border-left: 4px solid #e4405f; }
+    .link-instagram:hover { box-shadow: 0 0 20px rgba(228, 64, 95, 0.6); border-color: #e4405f; }
+    
+    .link-snapchat { border-left: 4px solid #fffc00; color: #000; background: rgba(255, 252, 0, 0.1); }
+    .link-snapchat:hover { box-shadow: 0 0 20px rgba(255, 252, 0, 0.6); border-color: #fffc00; color: #fffc00; }
+
+    /* Glitch Effect on Title */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 #ff00ff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 #00ffff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(30px, 9999px, 15px, 0); }
+      20% { clip: rect(80px, 9999px, 70px, 0); }
+      40% { clip: rect(10px, 9999px, 55px, 0); }
+      60% { clip: rect(50px, 9999px, 18px, 0); }
+      80% { clip: rect(90px, 9999px, 85px, 0); }
+      100% { clip: rect(35px, 9999px, 15px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+      0% { clip: rect(65px, 9999px, 99px, 0); }
+      20% { clip: rect(20px, 9999px, 30px, 0); }
+      40% { clip: rect(90px, 9999px, 95px, 0); }
+      60% { clip: rect(40px, 9999px, 60px, 0); }
+      80% { clip: rect(15px, 9999px, 25px, 0); }
+      100% { clip: rect(70px, 9999px, 80px, 0); }
+    }
+
+    /* Status Indicator */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 8px 16px;
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px solid #00ff00;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #00ff00;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #00ff00;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00ff00;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .link-fivem {
+  border-left: 4px solid #ff6b00;
+  background: linear-gradient(90deg, rgba(255, 107, 0, 0.1), transparent);
+}
+
+.link-fivem:hover {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.6);
+  border-color: #ff6b00;
+  background: rgba(255, 107, 0, 0.2);
+}
+
+.link-fivem i {
+  color: #ff6b00;
+}
+
+    /* Mobile Responsive */
+    @media (max-width: 480px) {
+      .card {
+        width: 90%;
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Background Effects -->
+  <div class="grid-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="scanlines"></div>
+
   <div class="card">
-    <img class="avatar" src="image1.png" alt="Photo de profil" />
-    <h1>ll_soulheroes_ll</h1>
-    <p>Retrouve-moi partout<br><strong>Discord :</strong> soulheroes</p>
+    <!-- Corner Accents -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
 
-    <a class="link" href="#" onclick="copyDiscord()">Discord perso : soulheroes</a>
+    <!-- Avatar -->
+    <div class="avatar-container">
+      <div class="avatar-ring"></div>
+      <img class="avatar" src="image1.png" alt="Photo de profil" />
+    </div>
 
-<script>
-  function copyDiscord() {
-    navigator.clipboard.writeText("soulheroes");
-    alert("Pseudo Discord copié !");
-  }
-</script>
+    <!-- Info -->
+    <h1 class="glitch" data-text="ll_soulheroes_ll">ll_soulheroes_ll</h1>
+    <div class="subtitle">Gaming Content Creator</div>
+    <div class="discord-tag">
+      <i class="fab fa-discord"></i> soulheroes
+    </div>
 
+    <!-- Links -->
+    <div class="links-container">
+      <a class="link link-discord" href="#" onclick="copyDiscord()">
+        <i class="fab fa-discord"></i>
+        <span>Discord Perso</span>
+        <i class="fas fa-copy" style="margin-left: auto; opacity: 0.6;"></i>
+      </a>
 
-    <a class="link" href="https://www.tiktok.com/@ll_soulheroes_ll" target="_blank">TikTok</a>
-    <a class="link" href="https://www.twitch.tv/soulheroes" target="_blank">Twitch</a>
-    <a class="link" href="https://discord.gg/ZYhEb2eX" target="_blank">Discord communautaire</a>
-    <a class="link" href="https://www.youtube.com/@ii_soulheroes_ii1127" target="_blank">YouTube</a>
-    <a class="link" href="https://www.instagram.com/ll_soulheroes_ll" target="_blank">Instagram</a>
-    <a class="link" href="https://www.snapchat.com/add/soulheroes" target="_blank">Snapchat</a>
-  </div>
+      <a class="link link-tiktok" href="https://www.tiktok.com/@ll_soulheroes_ll" target="_blank">
+        <i class="fab fa-tiktok"></i>
+        <span>TikTok</span>
+      </a>
+
+      <a class="link link-twitch" href="https://www.twitch.tv/soulheroes" target="_blank">
+        <i class="fab fa-twitch"></i>
+        <span>Twitch</span>
+      </a>
+
+      <a class="link link-discord" href="https://discord.gg/ZYhEb2eX" target="_blank">
+        <i class="fas fa-users"></i>
+        <span>Discord Communautaire</span>
+      </a>
+
+      <a class="link link-youtube" href="https://www.youtube.com/@ii_soulheroes_ii1127" target="_blank">
+        <i class="fab fa-youtube"></i>
+        <span>YouTube</span>
+      </a>
+
+      <a class="link link-instagram" href="https://www.instagram.com/ll_soulheroes_ll" target="_blank">
+        <i class="fab fa-instagram"></i>
+        <span>Instagram</span>
+      </a>
+
+      <a class="link link-snapchat" href="https://www.snapchat.com/add/soulheroes" target="_blank">
+        <i class="fab fa-snapchat"></i>
+        <span>Snapchat</span>
+      </a>
+    </div>
+    
+    <a class="link link-fivem" href="https://suulitoo.github.io/r-gles-serveur-Amnesiahorizon/index.html" target="_blank">
+  <i class="fas fa-car"></i>
+  <span>Serveur FiveM</span>
+  <i class="fas fa-external-link-alt" style="margin-left: auto; opacity: 0.6; font-size: 12px;"></i>
+</a>
+
+    
+
+  <script>
+    // Generate random particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 10 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Copy Discord function
+    function copyDiscord() {
+      navigator.clipboard.writeText("soulheroes");
+      
+      // Create custom notification
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(88, 101, 242, 0.9);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: bold;
+        z-index: 1000;
+        border: 2px solid #00ffff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        animation: slideDown 0.3s ease;
+      `;
+      notification.innerHTML = '<i class="fab fa-discord"></i> Pseudo copié !';
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideUp 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+
+    // Add keyboard shortcut easter egg
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'g' && e.ctrlKey) {
+        document.body.style.filter = 'hue-rotate(180deg)';
+        setTimeout(() => {
+          document.body.style.filter = 'none';
+        }, 1000);
+      }
+    });
+  </script>
 </body>
 </html>
